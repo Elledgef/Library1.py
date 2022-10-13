@@ -107,6 +107,7 @@ class Patron:
             return self._name
 
         def get_checked_out_items(self):
+            """Gets library Items that have been checked out"""
             return self._checked_out_items
 
         def add_library_item(self, item):
@@ -122,6 +123,7 @@ class Patron:
             self._fine_amount += amount
 
         def get_fine_amount(self):
+            """makes it so the patron has a fine to pay for overdue books"""
             return self._fine_amount
 
 class Library:
@@ -133,34 +135,42 @@ class Library:
             self._members = []
 
         def get_current_date(self):
+            """ Gives you the current date"""
             return self._current_date
 
         def get_holdings(self):
+            """ Makes it so the patron can put items on hold"""
             self._holdings = []
 
         def get_members(self):
+            """ Gets members of the library"""
             self._members = []
 
         def add_library_item(self, libraryitem):
+            """ Add library item"""
             self._holdings.append(libraryitem)
 
         def add_patron(self,user):
+            """ Add a library member"""
             self._members.append(user)
 
 
         def lookup_library_item_from_id(self, library_item_id):
+            """Makes it so you can look up a library item using its ID"""
             for libraryitem in self._holdings:
                 if (libraryitem.lookup_library_item_id() == library_item_id):
                     return libraryitem
             return None
 
         def lookup_patron_from_id(self, patron_id):
+            """ Makes it so a patron can be found through their ID"""
             for patron in self._members:
                 if (patron.lookup_patron_from_id()== patron_id):
                     return patron
             return None
 
         def check_out_library_item(self, patron_id, library_item_id, item):
+            """Makes it so a patron can check out a library book"""
             patron = self._lookup_patron_from_id = patron_id
             libraryitem = self._lookup_library_item_from_id = library_item_id
             if (patron == None):
@@ -181,6 +191,7 @@ class Library:
                 return "check out successful"
 
         def return_library_item(self,library_item_id,item):
+            """ Makes it so a library item can be returned"""
             libraryitem = self._lookup_library_item_from_id = library_item_id
             if (libraryitem == None):
                 return "item not found"
@@ -197,6 +208,7 @@ class Library:
                 return "return Successful"
 
         def request_library_item(self, patron_id, library_item_id, item):
+            """ Makes it so a patron can request a library item"""
             patron = self._lookup_patron_from_id = patron_id
             libraryitem = self._lookup_library_item_from_id = library_item_id
             if (patron == None):
